@@ -1,9 +1,10 @@
 package main
 
 import (
-	"plant_project/handlers"
-	"plant_project/repository"
+	"plant_project/backend/handlers"
+	"plant_project/backend/repository"
 
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
@@ -30,6 +31,7 @@ func main() {
 
 	// Create a Gin router HTTP (our server) with default middleware pour creer des routes d'API
 	r := gin.Default()
+	r.Use(cors.Default())
 
 	r.POST("/plants", handler.CreatePlant) //adresse de la fonction
 

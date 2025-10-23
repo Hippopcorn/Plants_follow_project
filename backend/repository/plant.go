@@ -27,8 +27,8 @@ func (r *Repository) GetPlantByID(id int) Plant {
 	return plant
 }
 
-func (r *Repository) CreatePlant(name string) {
-	row := gorm.G[Plant](r.repo).Raw("INSERT INTO plants (name) VALUES (?)", name).Row(context.Background())
+func (r *Repository) CreatePlant(plant Plant) {
+	row := gorm.G[Plant](r.repo).Raw("INSERT INTO plants (name) VALUES (?)", plant.Name).Row(context.Background())
 	if row.Err() != nil {
 		panic(row.Err())
 	}
@@ -38,5 +38,5 @@ func (r *Repository) DeletePlant(id int) {
 	row := gorm.G[Plant](r.repo).Raw("DELETE FROM plants WHERE id = ?", id).Row(context.Background())
 	if row.Err() != nil {
 		panic(row.Err())
-	} else if row.Rows
+	}
 }

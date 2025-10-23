@@ -1,17 +1,15 @@
 package handlers
 
 import (
-	"context"
 	"fmt"
 	"net/http"
 	"strconv"
 
 	"github.com/gin-gonic/gin"
-	"gorm.io/gorm"
 )
 
 type Plant struct {
-	ID   int
+	ID   int    `json:"id"`
 	Name string `json:"name" binding:"required"`
 }
 

@@ -1,7 +1,7 @@
 package handlers
 
 import (
-	"plant_project/repository"
+	"plant_project/backend/repository"
 )
 
 // s'occupe que du serveur HTTP
