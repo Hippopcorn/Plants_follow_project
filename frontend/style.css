@@ -24,7 +24,7 @@ h1, h2 {
 }
 
 button {
-  background-color: #4caf50;
+  background-color: #2F4F4F;
   color: white;
   border: none;
   border-radius: 8px;
@@ -37,4 +37,25 @@ button {
   margin: 20px auto;     /* auto = centre horizontalement */
   padding: 12px 24px;
   
+}
+
+form {
+    background-color: #8FBC8F;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    margin: 0 550px 0 550px;
+    padding-top: 20px;
+    border-radius: 20px;
+}
+
+input, textarea {
+    margin: 0 100px 0 100px;
+    text-align: center;
+}
+
+label {
+    color: #245f27;
+    padding: 10px;
 }

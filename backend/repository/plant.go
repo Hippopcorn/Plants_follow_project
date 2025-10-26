@@ -2,17 +2,20 @@ package repository
 
 import (
 	"context"
+	"time"
 
 	"gorm.io/gorm"
 )
 
 type Plant struct {
-	ID   int
-	Name string
+	ID        int       `db:"id"`
+	Name      string    `db:"name"`
+	CreatedAt time.Time `db:"created_at"`
+	Comment   string    `db:"comment"`
 }
 
 func (r *Repository) ListPlants() []Plant {
-	plants, err := gorm.G[Plant](r.repo).Raw("SELECT id, name FROM plants").Find(context.Background())
+	plants, err := gorm.G[Plant](r.repo).Raw("SELECT id, name, comment, created_at FROM plants").Find(context.Background())
 	if err != nil {
 		panic(err)
 	}
@@ -20,15 +23,20 @@ func (r *Repository) ListPlants() []Plant {
 }
 
 func (r *Repository) GetPlantByID(id int) Plant {
-	plant, err := gorm.G[Plant](r.repo).Raw("SELECT id, name FROM plants WHERE id = ?", id).Take(context.Background())
+	plant, err := gorm.G[Plant](r.repo).Raw("SELECT id, name, comment, created_at FROM plants WHERE id = ?", id).Take(context.Background())
 	if err != nil {
 		panic(err)
 	}
 	return plant
 }
 
-func (r *Repository) CreatePlant(plant Plant) {
-	row := gorm.G[Plant](r.repo).Raw("INSERT INTO plants (name) VALUES (?)", plant.Name).Row(context.Background())
+type CreatePlant struct {
+	Name    string `db:"name"`
+	Comment string `db:"comment"`
+}
+
+func (r *Repository) CreatePlant(plant CreatePlant) {
+	row := gorm.G[CreatePlant](r.repo).Raw("INSERT INTO plants (name, comment) VALUES (?, ?)", plant.Name, plant.Comment).Row(context.Background())
 	if row.Err() != nil {
 		panic(row.Err())
 	}
