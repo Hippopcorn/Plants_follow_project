@@ -39,6 +39,7 @@ func main() {
 	r.GET("/plants/:id", handler.GetPlantByID)
 
 	r.DELETE("/plants/:id", handler.DeletePlant)
+	r.POST("/plants/:id", handler.UpdatePlant)
 
 	// Start server on port 8080 (default)
 	// Server will listen on 0.0.0.0:8080 (localhost:8080 on Windows)

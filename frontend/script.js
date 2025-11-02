@@ -2,14 +2,13 @@ const plantCards = document.getElementById("plantCards")
 
 function addPlant() {
 
-    let baliseName = document.getElementById("name")
-    let name = baliseName.value
-    let baliseComment = document.getElementById("comment")
-    let comment = baliseComment.value
     const form = document.querySelector('form')
-
+    
     form.addEventListener("submit", (e) => {
         e.preventDefault();
+
+        let name = document.getElementById("name").value
+        let comment = document.getElementById("comment").value
         console.log("vous avez ajouté une plante");
 
         fetch('http://localhost:8080/plants', {
@@ -29,8 +28,8 @@ function addPlant() {
     // tant que ce n'est pas fait, il faut actualiser la page pour actualiser la liste des plantes affichées
     .then(data => console.log('Created:', data))
     .catch(err => console.error('Error:', err));
+    e.target.reset();
     })
-    //e.target.reset();
 }
 addPlant() 
 

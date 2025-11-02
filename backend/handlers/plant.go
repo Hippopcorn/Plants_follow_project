@@ -66,11 +66,11 @@ func (h *Handler) CreatePlant(c *gin.Context) {
 		return
 	}
 	// creer un type createPlantInput avec juste les champs configurables par l'utilisateur
-	createPlantInput := repository.CreatePlant{
+	createPlantDB := repository.CreatePlant{
 		Name:    newPlant.Name,
 		Comment: newPlant.Comment,
 	}
-	h.repo.CreatePlant(createPlantInput)
+	h.repo.CreatePlant(createPlantDB)
 
 	c.Status(http.StatusCreated)
 }
@@ -82,6 +82,38 @@ func (h *Handler) DeletePlant(c *gin.Context) {
 		return
 	}
 	h.repo.DeletePlant(id)
+
+	c.Status(http.StatusOK)
+}
+
+type UpdatePlant struct {
+	Name    string `json:"name" binding:"required"`
+	Comment string `json:"comment"`
+}
+
+func (h *Handler) UpdatePlant(c *gin.Context) {
+	id, err := strconv.Atoi(c.Param("id"))
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid ID"})
+		return
+	}
+
+	var updatePlant UpdatePlant
+	err = c.ShouldBind(&updatePlant) // parse le payload (--data '{"Name":"Cactus"}') et le met dans updatePlant
+	if err != nil {
+		fmt.Println(err)
+		c.JSON(http.StatusBadRequest, gin.H{
+			"message": "error",
+		})
+
+		return
+	}
+	updatePlantDB := repository.UpdatePlant{
+		Name:    updatePlant.Name,
+		Comment: updatePlant.Comment,
+	}
+	h.repo.UpdatePlant(updatePlantDB, id)
+
 
 	c.Status(http.StatusOK)
 }

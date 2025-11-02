@@ -48,3 +48,20 @@ func (r *Repository) DeletePlant(id int) {
 		panic(row.Err())
 	}
 }
+
+type UpdatePlant struct {
+	Name    string `db:"name"`
+	Comment string `db:"comment"`
+}
+
+func (r *Repository) UpdatePlant(plant UpdatePlant, id int) {
+	row := gorm.G[Plant](r.repo).Raw(`
+	UPDATE plants 
+	SET name = ?,
+		comment = ?
+	WHERE id = ?
+	`, plant.Name, plant.Comment, id).Row(context.Background())
+	if row.Err() != nil {
+		panic(row.Err())
+	}
+}
