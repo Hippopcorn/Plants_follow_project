@@ -2,7 +2,7 @@ html {
   background-color : #2F4F4F
 }
 
-h1, h2 {
+h1, h2{
   color : #8FBC8F;
   text-align : center;
   margin-bottom : 50px;
@@ -19,24 +19,28 @@ h1, h2 {
 }
 
 .plantElement {
+  display: flex;
+  flex-direction: column;
   color : #FAEBD7;
   text-align : center;
 }
 
 button {
-  background-color: #2F4F4F;
-  color: white;
+  background-color: #6eb8b8;
+  color: #2F4F4F;
   border: none;
   border-radius: 8px;
   font-size: 16px;
   cursor: pointer;
+  margin: 3% 20% 3% 20%;
 }
 
 .buttonAdd {
   display: block;        /* permet à margin:auto de fonctionner */
   margin: 20px auto;     /* auto = centre horizontalement */
   padding: 12px 24px;
-  
+  background-color: #2F4F4F;
+  color: white;
 }
 
 form {
@@ -58,4 +62,8 @@ input, textarea {
 label {
     color: #245f27;
     padding: 10px;
+}
+
+.tittleForm {
+    color: #245f27;
 }

@@ -5,28 +5,27 @@
   <title>Mon suivi de plantes</title>
   <link rel="icon" type="image/vnd.icon" href="/Users/elsa/Downloads/7b14ca36a3cfa9c5d7061b924e35d5ad/favicon.ico">
   <link rel="stylesheet" href="style.css">
-  <script src="script_index.js" defer></script>
+  <script src="script_plant.js" defer></script>
 </head>
 <body>
     <header>
-        <h1>Mon suivi de plantes</h1>
+        <h1>Ma plante</h1>
     </header>
 
     <main>
         <div>
-            <h2>Mes plantes</h2>
-            <div class="corps">
                 <div id="plantCards">
                 </div>
             </div>
-                <form class>
+            <form class>
+                    <h2 class="tittleForm">Modifier la plante</h2>
                     <!-- champ nom de la plante -->
                     <label for="name">Nom de la plante / espèce </label>
                     <input type="text" id="name" name="name" placeholder="Ex : Monstera" required>
                     <!-- champ commentaire -->
                     <label for="name">Commentaire </label>
                     <textarea name="comment" id="comment"></textarea>
-                    <button class="buttonAdd">Ajouter une nouvelle plante</button>
+                    <button class="buttonAdd">Confirmer les modifications</button>
                 </form>
         </div>
 

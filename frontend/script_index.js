@@ -75,12 +75,20 @@ function generatePlantCards(plants) {  //rajouter la BD pour pouvoir aller cherc
         const plantComment = document.createElement("div");
         plantComment.classList.add("plantComment");
         plantComment.innerText = comment;
-        
+
+        // ajout d'un bouton pour modifier la plante 
+        const buttonOpenPlant = document.createElement("button")
+        buttonOpenPlant.textContent = "Voir";
+        buttonOpenPlant.setAttribute
+        buttonOpenPlant.addEventListener("click", (e) => {
+            console.log("vous avez cliqué sur le bouton de la plante :" + plant.id);
+             document.location.href = 'plant.html';
+        })
+
         // ajout d'un bouton pour delete la plante
         const buttonDelete = document.createElement("button")
         buttonDelete.textContent = "Supprimer";
         buttonDelete.addEventListener("click", (e) => {
-            console.log("vous avez cliqué sur le bouton de la plante :" + plant.id);
             deletePlant(plant.id);
         })
         
@@ -88,6 +96,7 @@ function generatePlantCards(plants) {  //rajouter la BD pour pouvoir aller cherc
         plantElement.appendChild(plantName);
         plantElement.appendChild(plantAddDate);
         plantElement.appendChild(plantComment);
+        plantElement.appendChild(buttonOpenPlant);
         plantElement.appendChild(buttonDelete);
     
         // On ajoute plantElement dans la div plantCards
