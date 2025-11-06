@@ -114,6 +114,5 @@ func (h *Handler) UpdatePlant(c *gin.Context) {
 	}
 	h.repo.UpdatePlant(updatePlantDB, id)
 
-
 	c.Status(http.StatusOK)
 }
